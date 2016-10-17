@@ -1,0 +1,27 @@
+body {
+    background: #0e90d8;
+    color: #ffffff;
+}
+
+.navbar {
+    background: #FFFFFF;
+    border: 0px;
+}
+
+#searchbar {
+    border-radius: 0px;
+    border-color: lightgrey;
+    width: 300%;
+}
+
+.dropdown {
+    background: #FFFFFF;
+    opacity: .9;
+    color: rgb(11, 80, 127);
+    border-radius: 0%;
+}
+
+.collapse-menu-item {
+    text-align: center;
+    padding: 5px;
+}
