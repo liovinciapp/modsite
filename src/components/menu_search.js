@@ -12,6 +12,7 @@ class MenuSearch extends Component {
 		return (
 
 			<form className="navbar-form navbar-left">
+				  
 	            <input type="text" className="form-control" id="searchbar" placeholder="Search..."/>
 	        </form>
 		);

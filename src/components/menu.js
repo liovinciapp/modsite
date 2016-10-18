@@ -24,7 +24,7 @@ class Menu extends Component {
        				<div id="navbar" className="navbar-collapse collapse">
        					<MenuSearch />
 	            		
-	            		<ul class="nav navbar-nav navbar-right">
+	            		<ul className="nav navbar-nav navbar-right">
 
 	            			<MenuItem />
 			               
