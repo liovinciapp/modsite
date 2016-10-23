@@ -25,3 +25,104 @@ body {
     text-align: center;
     padding: 5px;
 }
+
+.home-row-item {
+    margin: 2px;
+    background: rgb(105, 105, 105);
+    position: relative;
+}
+
+.home-row-item:hover .btn-track, .home-row-item:hover .btn-update, .home-row-item:hover .btn-updates, .home-row-item:hover .product-company, .home-row-item:hover .product-name {
+    visibility: visible;
+}
+
+.home-row-item:hover .product-image {
+    opacity: 0.5 !important;
+}
+
+.home-row-container {
+    position: relative;
+}
+
+.home-row-container:hover .btn-navigation{
+    visibility: visible;
+}
+
+.btn-navigation {
+    background: rgba(11, 80, 127, 0.6);
+    position: absolute;
+    bottom: 0px;
+    top: 29px;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.btn-update {
+    color: white;
+    position: absolute !important;
+    z-index: 1;
+    top: 2% !important;
+    left: 2% !important;
+    bottom: 75% !important;
+    border-radius: 50% !important;
+    background: #0e90d8;
+    visibility: hidden;
+}
+
+.btn-track {
+    color: white;
+    position: absolute !important;
+    z-index: 1;
+    top: 2% !important;
+    right: 2% !important;
+    bottom: 75% !important;
+    border-radius: 50% !important;
+    background: #0e90d8;
+    visibility: hidden;
+}
+
+.btn-updates {
+    color: white;
+    position: absolute !important;
+    z-index: 1;
+    bottom: 2% !important;
+    right: 2% !important;
+    top: 75% !important;
+    border-radius: 50% !important;
+    background: #0e90d8;
+    visibility: hidden;
+}
+
+.product-name {
+    color: white;
+    position: absolute !important;
+    z-index: 1;
+    bottom: 10%;
+    height: auto;
+    width: 70%;
+    border: 2px;
+    text-align: left;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.product-company {
+    color: white;
+    position: absolute !important;
+    z-index: 1;
+    bottom: 0%;
+    height: auto;
+    width: 70%;
+    border: 2px;
+    text-align: left;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.next {
+    right: 0px;
+}
+
+.prev {
+    left: 0px;
+}
