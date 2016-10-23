@@ -12,31 +12,33 @@ class Menu extends Component {
 
 	render() {
 		return (
+			<div>
+				<nav className="navbar navbar-default navbar-fixed-top">
+					<div className="container">
+						<div className="navbar-header">
+							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse"
+									data-target="#navbar">
+								<span className="sr-only">Toggle navigation</span>
+								<img alt="Liovinci" src="../img/liovinci-logo-icon.png" width="30" height="30"/>
+							</button>
+						</div>
+						<div id="navbar" className="navbar-collapse collapse">
+							<MenuSearch />
 
-			<nav className="navbar navbar-default navbar-fixed-top">
-				<div className="container">
-					<div className="navbar-header">
-			            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-			                <span className="sr-only">Toggle navigation</span>
-			                <img alt="Liovinci" src="../img/liovinci-logo-icon.png" width="30" height="30"/>
-			            </button>
-        			</div>
-       				<div id="navbar" className="navbar-collapse collapse">
-       					<MenuSearch />
-	            		
-	            		<ul className="nav navbar-nav navbar-right">
+							<ul className="nav navbar-nav navbar-right">
 
-	            			<MenuItem />
-			               
-			            </ul>
-		        	</div>
-				</div>
-			</nav>
+								<MenuItem />
 
-			
+							</ul>
+						</div>
+					</div>
+				</nav>
+				<br/>
+				<br/>
+				<br/>
+			</div>
 		);
 	}
-
 }
 
 
