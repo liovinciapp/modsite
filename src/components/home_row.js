@@ -39,7 +39,7 @@ export default class HomeRow extends Component {
                 <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()} className="prev"/>
                 <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()} className="next"/>
                 <OwlCarousel {...settings} ref="carousel">
-                    {homerow.map((item)=>{return(<HomeRowItem image={item.img} alt={item.alt} productName={item.productName} productCompany={item.productCompany} track={item.track}/>);})}
+                    {homerow.map((item)=>{return(<HomeRowItem image={item.img} alt={item.alt} productName={item.productName} productCompany={item.productCompany} track={item.track} key={item.id} itemNumber={item.id}/>);})}
                 </OwlCarousel>
             </div>
         );

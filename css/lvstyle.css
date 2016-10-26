@@ -64,8 +64,8 @@ body {
     top: 2% !important;
     left: 2% !important;
     bottom: 75% !important;
-    border-radius: 50% !important;
-    background: #0e90d8;
+    border-radius: 25px !important;
+    background: #3dcc4a;
     visibility: hidden;
 }
 
@@ -125,4 +125,13 @@ body {
 
 .prev {
     left: 0px;
+}
+
+.date-text-color {
+    color: #000000;
+    border-radius: 5px;
+}
+
+.show-error-modal-text-color, .show-success-modal-text-color, .show-network-error-modal-text-color{
+    color: #000000;
 }
