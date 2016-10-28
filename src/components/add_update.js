@@ -133,12 +133,13 @@ export default class AddUpdate extends Component {
         this.setState({title: ''});
         this.setState({description: ''});
         this.setState({source: ''});
-        this.setState({date: Moment()});
+        this.setState({date: moment()});
     }
 
     render() {
         return (<div className="container">
                 <RowTitle title="Add Update"/>
+                <h4>{this.props.getcompanyandprojectname(this.props.params.id).title} - {this.props.getcompanyandprojectname(this.props.params.id).company}</h4>
                 <Modal show={this.state.showNetworkErrorModal} onHide={this.closeShowNetworkErrorModal.bind(this)}
                        className="show-network-error-modal-text-color">
                     <Modal.Header closeButton>
@@ -193,7 +194,7 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formBasicText"
                             >
-                                <ControlLabel>Project Title</ControlLabel>
+                                <ControlLabel>Update Title</ControlLabel>
                                 <FormControl
                                     type="text"
                                     value={this.state.title}
@@ -204,7 +205,7 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formBasicText"
                             >
-                                <ControlLabel>Source</ControlLabel>
+                                <ControlLabel>Update Source</ControlLabel>
                                 <FormControl
                                     type="text"
                                     value={this.state.source}
@@ -214,7 +215,7 @@ export default class AddUpdate extends Component {
                             </FormGroup>
                             <FormGroup
                                 controlId="formBasicText">
-                                <ControlLabel>Release Date</ControlLabel>
+                                <ControlLabel>Update Date</ControlLabel>
                                 <br />
                                 <DatePicker
                                     selected={this.state.date}
@@ -225,7 +226,7 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formControlsTextarea"
                             >
-                                <ControlLabel>Description</ControlLabel>
+                                <ControlLabel>Update Description</ControlLabel>
                                 <FormControl
                                     componentClass="textarea"
                                     placeholder="Description"

@@ -8,11 +8,11 @@ addStyle(Button, 'update');
 addStyle(Button, 'track');
 addStyle(Button, 'updates');
 
-const HomeRowItem = ({image, alt, productName, productCompany, track, itemNumber})=>{
+const HomeRowItem = ({image, alt, productName, productCompany, itemNumber, noOfUpdates})=>{
     return(<div className="home-row-item">
             <Link to={"addUpdate/" + itemNumber} className="btn btn-update"><span>Update</span></Link>
-            <Button bsStyle="track">{track}</Button>
-            <Button bsStyle="updates" className="glyphicon glyphicon-pencil" />
+            <Button bsStyle="track">T</Button>
+            <Button bsStyle="updates">{noOfUpdates}</Button>
             <ProductDescription productName={productName} productCompany={productCompany} />
             <Image className="product-image" src={image} alt={alt} responsive/>
         </div>
