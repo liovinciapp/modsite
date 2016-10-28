@@ -28,19 +28,27 @@ export default class HomeRow extends Component {
             itemsCustom: [[0, 3], [767, 3], [991, 5], [1199, 7]],
             responsive: true,
             scrollPerPage: true,
-            navigation: false
+            navigation: false,
+            lazyLoad: true
         };
 
-        const title = Object.keys(this.props.homerow);
-        const homerow = this.props.homerow[title];
+        const title = this.props.homerow[0].category;
 
-        return (<div className="home-row-container">
-                <RowTitle title={title} />
-                <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()} className="prev"/>
-                <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()} className="next"/>
-                <OwlCarousel {...settings} ref="carousel">
-                    {homerow.map((item)=>{return(<HomeRowItem image={item.img} alt={item.alt} productName={item.productName} productCompany={item.productCompany} track={item.track} key={item.id} itemNumber={item.id}/>);})}
-                </OwlCarousel>
+        return (<div>
+                <RowTitle title={title}/>
+                <div className="home-row-container">
+                    <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()}
+                                      className="prev"/>
+                    <NavigationButton windowWidth={this.state.windowWidth} onClick={()=>this.refs.carousel.prev()}
+                                      className="next"/>
+                    <OwlCarousel {...settings} ref="carousel">
+                        {this.props.homerow.map((item)=> {
+                            return (<HomeRowItem image={item.imageURL} alt={item.title} productName={item.title}
+                                                 productCompany={item.company} key={item.projectId}
+                                                 itemNumber={item.projectId} noOfUpdates={item.noOfUpdates}/>);
+                        })}
+                    </OwlCarousel>
+                </div>
             </div>
         );
     }

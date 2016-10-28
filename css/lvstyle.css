@@ -52,7 +52,7 @@ body {
     background: rgba(11, 80, 127, 0.6);
     position: absolute;
     bottom: 0px;
-    top: 29px;
+    top: 0px;
     z-index: 1;
     visibility: hidden;
 }
@@ -89,7 +89,7 @@ body {
     right: 2% !important;
     top: 75% !important;
     border-radius: 50% !important;
-    background: #0e90d8;
+    background: #F44336;
     visibility: hidden;
 }
 
@@ -117,6 +117,11 @@ body {
     text-align: left;
     overflow: hidden;
     visibility: hidden;
+}
+
+.product-image {
+    height: auto;
+    width: auto;
 }
 
 .next {
