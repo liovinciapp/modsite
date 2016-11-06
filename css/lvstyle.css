@@ -1,6 +1,7 @@
 body {
     background: #0e90d8;
     color: #ffffff;
+    margin: 20px;
 }
 
 .navbar {
@@ -30,6 +31,7 @@ body {
     margin: 2px;
     background: rgb(105, 105, 105);
     position: relative;
+    margin: 5px;
 }
 
 .home-row-item:hover .btn-track, .home-row-item:hover .btn-update, .home-row-item:hover .btn-updates, .home-row-item:hover .product-company, .home-row-item:hover .product-name {
@@ -65,7 +67,7 @@ body {
     left: 2% !important;
     bottom: 75% !important;
     border-radius: 25px !important;
-    background: #3dcc4a;
+    background: #18d09c;
     visibility: hidden;
 }
 
@@ -73,12 +75,13 @@ body {
     color: white;
     position: absolute !important;
     z-index: 1;
-    top: 2% !important;
-    right: 2% !important;
+    right: 3px !important;
     bottom: 75% !important;
     border-radius: 50% !important;
-    background: #0e90d8;
+    background: #0b507f;
     visibility: hidden;
+    margin-right: 20px:
+    margin-top: 5px;
 }
 
 .btn-updates {
@@ -89,7 +92,7 @@ body {
     right: 2% !important;
     top: 75% !important;
     border-radius: 50% !important;
-    background: #F44336;
+    background: #c0392b;
     visibility: hidden;
 }
 
@@ -104,6 +107,7 @@ body {
     text-align: left;
     overflow: hidden;
     visibility: hidden;
+    margin-left: 4px;
 }
 
 .product-company {
@@ -117,6 +121,7 @@ body {
     text-align: left;
     overflow: hidden;
     visibility: hidden;
+    margin-left: 4px;
 }
 
 .product-image {
@@ -139,4 +144,15 @@ body {
 
 .show-error-modal-text-color, .show-success-modal-text-color, .show-network-error-modal-text-color{
     color: #000000;
+}
+
+.pageloading-image {
+    height: 100px;
+    width: 100px;
+}
+
+.pageloading-image-container {
+    background: rgba(105, 105, 105, 0.5);
+    height: inherit;
+    width: inherit;
 }
