@@ -4,19 +4,23 @@ import {FormGroup, FormControl, ControlLabel, Col, Form, Row, Button, Modal} fro
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-export default class AddUpdate extends Component {
+export default class AddProject extends Component {
     constructor(props) {
         super(props);
         this.state = {
             title: '',
-            description: '',
+            company: '',
             source: '',
+            description: '',
             date: moment(),
+            tags: '',
+            tagsOnDisplay:[],
             isSubmitting: false,
             showErrorModal: false,
             showSuccessModal: false,
             showNetworkErrorModal: false
         };
+        this.productCategory = '';
     }
 
     handleTitleChange(title) {
@@ -24,7 +28,12 @@ export default class AddUpdate extends Component {
     }
 
     handleDateChange(date) {
+        console.log(date);
         this.setState({date: date});
+    }
+
+    handleCompanyChange(company) {
+        this.setState({company: company.target.value});
     }
 
     handleSourceChange(source) {
@@ -35,11 +44,40 @@ export default class AddUpdate extends Component {
         this.setState({description: description.target.value});
     }
 
+    handleProjectCategoryChange(category) {
+      console.log(category.target.value);
+      this.productCategory = category.target.value;
+    }
+
+    handleTagsChange(tags) {
+      this.setState({tags: tags.target.value});
+      let tagstemp = tags.target.value.split(" ");
+      console.log(tagstemp);
+      for(let i=0; i< tagstemp.length; i++) {
+        if(tagstemp[i] === "") {
+            tagstemp.splice(i, 1);
+            i--;
+        } else {
+          tagstemp[i] = tagstemp[i].toLowerCase();
+        }
+      }
+      console.log(tagstemp);
+      this.setState({tagsOnDisplay: tagstemp});
+    }
+
     isInputValid() {
-        const titleLength = this.state.title.length;
+        const title = this.state.title.replace(' ', '');
+        console.log(title);
+        const titleCheckRegex = new RegExp("[A-Za-z0-9]{1,30}");
+        const company = this.state.company.replace(' ', '');
+        console.log(company);
+        const companyCheckRegex = new RegExp("[A-Za-z0-9]{1,30}");
         const descriptionLength = this.state.description.length;
-        const sourceLength = this.state.source.length;
         const date = this.state.date;
+        console.log(date);
+        const productCategory = this.productCategory;
+        console.log(productCategory);
+        const sourceLength = this.state.source.length;
         const sourceUrl = this.state.source;
         const sourceUrlCheck = new RegExp(
             "^" +
@@ -77,7 +115,8 @@ export default class AddUpdate extends Component {
             "(?:[/?#]\\S*)?" +
             "$", "i"
         );
-        if (titleLength > 0 && titleLength < 30 && descriptionLength > 0 && descriptionLength < 300 && sourceLength > 0 && date != null && sourceUrlCheck.test(sourceUrl)) {
+
+        if (titleCheckRegex.test(title) && companyCheckRegex.test(company) && descriptionLength > 0 && descriptionLength <= 300 && productCategory != '' && sourceUrlCheck.test(sourceUrl)){
             return true;
         } else {
             return false;
@@ -115,8 +154,16 @@ export default class AddUpdate extends Component {
             this.setState({isSubmitting: true});
             const title = this.state.title.trim();
             const description = this.state.description.trim();
-            const source = this.state.source.trim();
+            const company = this.state.company.trim();
             const date = this.state.date;
+            const source = this.state.source.trim();
+            const tags = this.state.tagsOnDisplay.push(title, company, this.productCategory);
+            console.log("submit"+title);
+            console.log("submit"+date);
+            console.log("submit"+description);
+            console.log("submit"+company);
+            console.log("submit"+source);
+            console.log("submit"+tags);
 
             // Make an `ajax` call below
             //use 'this.openShowNetworkErrorModal();' if the ajax call fails
@@ -131,14 +178,39 @@ export default class AddUpdate extends Component {
     clear() {
         this.setState({title: ''});
         this.setState({description: ''});
-        this.setState({source: ''});
+        this.setState({company: ''});
         this.setState({date: moment()});
+        this.setState({source: ''});
+        this.state.tags = '';
+        this.state.tagsOnDisplay = [];
+        this.productCategory = '';
     }
 
     render() {
+      const projectCategories = () => {
+        let projectCategories = [];
+        let distinctCategories = new Set();
+        for(let i=0; i < this.props.projects.length; i++) {
+            distinctCategories.add(this.props.projects[i].category);
+        }
+        projectCategories = Array.from(distinctCategories).map((option)=>{
+          return <option value={option}>{option}</option>;
+        });
+        console.log(projectCategories);
+        return projectCategories;
+
+      };
+
+      const displayTags = () => {
+        console.log("from displayTags");
+        let tags = this.state.tagsOnDisplay.map((tag) => {
+          console.log(tag);
+          return `#${tag} `;
+        });
+        return <FormControl.Static>{tags}</FormControl.Static>;
+      };
         return (<div className="container">
-                <RowTitle title="Add Update"/>
-                <h4>{this.props.getcompanyandprojectname(this.props.params.id).title} - {this.props.getcompanyandprojectname(this.props.params.id).company}</h4>
+                <RowTitle title="Add Project"/>
                 <Modal show={this.state.showNetworkErrorModal} onHide={this.closeShowNetworkErrorModal.bind(this)}
                        className="show-network-error-modal-text-color">
                     <Modal.Header closeButton>
@@ -193,7 +265,7 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formBasicText"
                             >
-                                <ControlLabel>Update Title</ControlLabel>
+                                <ControlLabel>Title</ControlLabel>
                                 <FormControl
                                     type="text"
                                     value={this.state.title}
@@ -204,17 +276,50 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formBasicText"
                             >
-                                <ControlLabel>Update Source</ControlLabel>
+                                <ControlLabel>Company</ControlLabel>
                                 <FormControl
                                     type="text"
-                                    value={this.state.source}
-                                    placeholder="http://www.example.com"
-                                    onChange={this.handleSourceChange.bind(this)}
+                                    value={this.state.company}
+                                    placeholder="Project Company"
+                                    onChange={this.handleCompanyChange.bind(this)}
                                 />
+                            </FormGroup>
+                            <FormGroup controlId="formControlsSelect">
+                              <ControlLabel>Project Categories</ControlLabel>
+                              <FormControl componentClass="select" onChange={this.handleProjectCategoryChange.bind(this)}>
+                              {projectCategories()}
+                              </FormControl>
+                              </FormGroup>
+                              <FormGroup
+                                  controlId="formBasicText"
+                              >
+                                  <ControlLabel>Add Source</ControlLabel>
+                                  <FormControl
+                                      type="text"
+                                      value={this.state.source}
+                                      placeholder="http://www.example.com"
+                                      onChange={this.handleSourceChange.bind(this)}
+                                  />
+                              </FormGroup>
+                              <FormGroup
+                                  controlId="formBasicText"
+                              >
+                                  <ControlLabel>Tags</ControlLabel>
+                                  <FormControl
+                                      type="text"
+                                      value={this.state.tags}
+                                      placeholder="Eg: tag1 tag2 tag3..."
+                                      onChange={this.handleTagsChange.bind(this)}
+                                  />
+                              </FormGroup>
+                              <FormGroup>
+                              <ControlLabel>Title and Company are auto tagged</ControlLabel>
+                                <ControlLabel>Tags Added By You</ControlLabel>
+                                {displayTags()}
                             </FormGroup>
                             <FormGroup
                                 controlId="formBasicText">
-                                <ControlLabel>Update Date</ControlLabel>
+                                <ControlLabel>Release Date</ControlLabel>
                                 <br />
                                 <DatePicker
                                     selected={this.state.date}
@@ -225,7 +330,7 @@ export default class AddUpdate extends Component {
                             <FormGroup
                                 controlId="formControlsTextarea"
                             >
-                                <ControlLabel>Update Description</ControlLabel>
+                                <ControlLabel>Project Description</ControlLabel>
                                 <FormControl
                                     componentClass="textarea"
                                     placeholder="Description"

@@ -4,6 +4,7 @@ import HomeRow from './home_row';
 export default class HomeContainer extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props.projects);
     }
 
     getCategories() {
@@ -11,6 +12,7 @@ export default class HomeContainer extends Component {
         for(var i=0; i < this.props.projects.length; i++) {
             distinctCategories.add(this.props.projects[i].category);
         }
+        console.log(distinctCategories);
         return distinctCategories;
     }
 
@@ -34,7 +36,10 @@ export default class HomeContainer extends Component {
     }
 
     render() {
+        console.time("getHomeContainerData");
         const homecontainer = this.getHomeContainerData();
+        console.log(homecontainer);
+        console.timeEnd("getHomeContainerData");
         return (<div>
                 {homecontainer.map((homerow)=> {
                     return (<HomeRow homerow={homerow} key={homerow[0].categoryId}/>);

@@ -24,8 +24,9 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "axios": "^0.15.1",
+    "axios": "^0.15.2",
     "babel-preset-stage-1": "^6.1.18",
+    "firebase": "^3.5.3",
     "lodash": "^3.10.1",
     "moment": "^2.15.2",
     "react": "^0.14.3",

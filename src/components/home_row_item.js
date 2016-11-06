@@ -8,8 +8,10 @@ addStyle(Button, 'update');
 addStyle(Button, 'track');
 addStyle(Button, 'updates');
 
-const HomeRowItem = ({image, alt, productName, productCompany, itemNumber, noOfUpdates})=>{
-    return(<div className="home-row-item">
+const HomeRowItem = ({image, alt, productName, productCompany, itemNumber, noOfUpdates, sourceURL})=>{
+    console.log("HomeRowItem");
+    return(
+        <div className="home-row-item" onDoubleClick = {() => {window.open('http://google.com/', '_blank')}}>
             <Link to={"addUpdate/" + itemNumber} className="btn btn-update"><span>Update</span></Link>
             <Button bsStyle="track">T</Button>
             <Button bsStyle="updates">{noOfUpdates}</Button>
